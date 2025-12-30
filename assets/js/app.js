@@ -146,10 +146,14 @@ function renderMenu(menuData, isSearchMode = false) {
     headerContent.className = 'flex-1';
     
     const categoryName = document.createElement('h2');
-    categoryName.className = 'text-xl md:text-2xl font-medium text-text-ink dark:text-text-main tracking-tight';
-    // Convert to Title Case
-    const titleCaseName = category.name.toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
-    categoryName.textContent = titleCaseName;
+    categoryName.className = 'text-2xl md:text-3xl font-semibold text-text-ink dark:text-text-main tracking-tight';
+    categoryName.style.fontFamily = "'Cinzel', serif";
+    // Capitalize first letter of each word
+    categoryName.textContent = category.name
+      .toLowerCase()
+      .replace(/\b\w/g, char => char.toUpperCase());
+    categoryName.style.letterSpacing = "0.05em";
+    
     
     headerContent.appendChild(categoryName);
     
@@ -198,22 +202,22 @@ function renderMenu(menuData, isSearchMode = false) {
       const itemHeader = document.createElement('div');
       itemHeader.className = 'flex justify-between items-start mb-2';
 
-      // Item name
+      // Item name (modern sans-serif, medium weight, normal casing)
       const itemName = document.createElement('h3');
-      itemName.className = 'text-base md:text-lg font-semibold text-text-ink dark:text-text-main flex-1 pr-4';
+      itemName.className = 'text-base md:text-lg font-medium text-text-ink dark:text-text-main flex-1 pr-4';
       itemName.textContent = item.name;
 
-      // Item price (top-right, larger, ember-accent)
+      // Item price (modern sans-serif, medium weight, accent color)
       const itemPrice = document.createElement('p');
-      itemPrice.className = 'text-lg md:text-xl font-bold text-ember-accent dark:text-ember-accent flex-shrink-0';
+      itemPrice.className = 'text-lg md:text-xl font-medium text-ember-accent dark:text-ember-accent flex-shrink-0';
       itemPrice.textContent = `€${item.priceEuro.toFixed(2)}`;
 
       itemHeader.appendChild(itemName);
       itemHeader.appendChild(itemPrice);
 
-      // Item description
+      // Item description (modern sans-serif, smaller, softer color)
       const itemDesc = document.createElement('p');
-      itemDesc.className = 'text-sm md:text-base text-text-muted dark:text-text-muted leading-relaxed';
+      itemDesc.className = 'text-sm text-slate-500 dark:text-slate-400 leading-relaxed mt-1';
       itemDesc.textContent = item.description;
 
       itemDiv.appendChild(itemHeader);
