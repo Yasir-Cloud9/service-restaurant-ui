@@ -146,12 +146,8 @@ function renderMenu(menuData, isSearchMode = false) {
     headerContent.className = 'flex-1';
     
     const categoryName = document.createElement('h2');
-    categoryName.className = 'text-2xl md:text-3xl font-semibold text-text-ink dark:text-text-main tracking-tight';
-    categoryName.style.fontFamily = "'Cinzel', serif";
-    // Capitalize first letter of each word
-    categoryName.textContent = category.name
-      .toLowerCase()
-      .replace(/\b\w/g, char => char.toUpperCase());
+    categoryName.className = 'text-2xl md:text-3xl font-semibold text-text-ink dark:text-text-main tracking-widest uppercase font-graduate';
+    categoryName.textContent = category.name;
     categoryName.style.letterSpacing = "0.05em";
     
     
