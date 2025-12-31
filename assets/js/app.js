@@ -146,7 +146,7 @@ function renderMenu(menuData, isSearchMode = false) {
     headerContent.className = 'flex-1';
     
     const categoryName = document.createElement('h2');
-    categoryName.className = 'text-2xl md:text-3xl font-semibold text-text-ink dark:text-text-main tracking-widest uppercase font-graduate';
+    categoryName.className = 'text-2xl md:text-3xl font-normal text-text-ink dark:text-text-main tracking-widest font-clarendon';
     categoryName.textContent = category.name;
     categoryName.style.letterSpacing = "0.05em";
     
