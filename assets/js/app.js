@@ -393,14 +393,25 @@ function setupVegetarianFilter() {
 
   // Update button styles based on active filter
   function updateFilterButtons() {
-    if (currentFilter === 'all') {
-      filterAll.className = 'px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 bg-white dark:bg-gray-800 text-stone-900 dark:text-gray-100 shadow-sm';
-      filterVeg.className = 'px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 text-stone-600 dark:text-gray-400 hover:text-stone-900 dark:hover:text-gray-100';
+    const active =
+      "px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 " +
+      "bg-white dark:bg-neutral-900 text-stone-900 dark:text-white " +
+      "shadow-sm dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]";
+  
+    const inactive =
+      "px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 " +
+      "text-stone-600 dark:text-neutral-300 " +
+      "hover:text-stone-900 dark:hover:text-white " +
+      "hover:bg-stone-50 dark:hover:bg-neutral-900/60";
+  
+    if (currentFilter === "all") {
+      filterAll.className = active;
+      filterVeg.className = inactive;
     } else {
-      filterAll.className = 'px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 text-stone-600 dark:text-gray-400 hover:text-stone-900 dark:hover:text-gray-100';
-      filterVeg.className = 'px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 bg-white dark:bg-gray-800 text-stone-900 dark:text-gray-100 shadow-sm';
+      filterAll.className = inactive;
+      filterVeg.className = active;
     }
-  }
+  }  
 
   // Filter All button click
   filterAll.addEventListener('click', function() {
