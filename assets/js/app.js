@@ -162,7 +162,7 @@ function renderMenu(menuData, isSearchMode = false) {
     // Create category container
     // NOTE: kept functionality same; only removed extra spacing via smaller mobile padding + no card mb stacking (optional).
     const categoryDiv = document.createElement('div');
-    categoryDiv.className = 'bg-parchment-card dark:bg-dark-card border border-stone-300 dark:border-dark-border rounded-lg overflow-hidden mb-2 sm:mb-3 md:mb-4';
+    categoryDiv.className = 'bg-parchment-card dark:bg-dark-card border border-stone-300 dark:border-dark-border rounded-lg overflow-hidden';
 
     // Create category header (clickable) - styled like a physical menu folder
     // Mobile density tweak: p-3 on mobile
