@@ -9,34 +9,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Arvo:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              // Dark Mode (Charcoal)
-              'charcoal-bg': '#121212',
-              'charcoal-card': '#1E1E1E',
-              'ember-accent': '#F05D23',
-              'text-main': '#E0E0E0',
-              'text-muted': '#A0A0A0',
-              // Light Mode (Parchment)
-              'parchment-bg': '#F9F7F2',
-              'parchment-card': '#FFFFFF',
-              'ember-dark': '#D3410B',
-              'text-ink': '#1A1A1B',
-            },
-            fontFamily: {
-              'clarendon': ['Arvo', 'serif'],
-              'graduate': ['Graduate', 'serif'],
+        tailwind.config = {
+          darkMode: 'class',
+          theme: {
+            extend: {
+              colors: {
+                /* DARK MODE — TRUE BLACK SYSTEM */
+                'dark-bg': '#000000',
+                'dark-card': '#0A0A0A',
+                'dark-border': '#1A1A1A',
+      
+                /* LIGHT MODE */
+                'parchment-bg': '#F9F7F2',
+                'parchment-card': '#FFFFFF',
+      
+                /* ACCENTS */
+                'ember-accent': '#F05D23',
+                'ember-dark': '#D3410B',
+      
+                /* TEXT */
+                'text-light': '#EDEDED',
+                'text-muted-dark': '#9CA3AF',
+                'text-ink': '#1A1A1B',
+              },
+              fontFamily: {
+                clarendon: ['Arvo', 'serif'],
+                graduate: ['Graduate', 'serif'],
+              }
             }
           }
         }
-      }
     </script>
     <link rel="stylesheet" href="assets/css/custom.css">
 </head>
-<body class="bg-parchment-bg dark:bg-charcoal-bg text-text-ink dark:text-text-main transition-colors duration-200">
+<body class="bg-parchment-bg dark:bg-dark-bg text-text-ink dark:text-text-light transition-colors duration-200">
     <!-- Hero Section -->
     <section class="relative h-[40vh] md:h-[50vh] lg:h-[30vh] overflow-hidden">
         <!-- Background Image with Dark Overlay -->
@@ -75,7 +81,7 @@
     </section>
 
     <!-- Sticky Header -->
-    <header class="sticky top-0 z-50 bg-white/95 dark:bg-black/95 backdrop-blur-sm border-b border-stone-200 dark:border-gray-800 shadow-sm">
+    <header class="sticky top-0 z-50 bg-white/95 dark:bg-dark-bg backdrop-blur-sm border-b border-stone-200 dark:border-dark-border">
         <div class="max-w-4xl mx-auto px-4 py-3 md:py-4">
             <div class="flex flex-row items-center justify-between gap-3">
                 <!-- Search Input -->

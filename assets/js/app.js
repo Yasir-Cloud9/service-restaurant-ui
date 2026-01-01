@@ -94,8 +94,8 @@ function renderMenu(menuData, isSearchMode = false) {
       const itemDiv = document.createElement('div');
       // Add border-t for all items except the last one
       const isLastItem = index === filteredItems.length - 1;
-      const borderClass = isLastItem ? '' : 'border-b border-stone-200 dark:border-gray-700';
-      itemDiv.className = `p-4 md:p-5 bg-parchment-card dark:bg-charcoal-card border border-stone-200 dark:border-gray-700 rounded-xl shadow-sm ${borderClass} hover:scale-[1.01] transition-all duration-200 mb-3 md:mb-4`;
+      const borderClass = isLastItem ? '' : 'border-b border-stone-200 dark:border-dark-border';
+      itemDiv.className = `p-4 md:p-5 bg-parchment-card dark:bg-dark-card border border-stone-200 dark:border-dark-border rounded-xl shadow-sm ${borderClass} hover:scale-[1.01] transition-all duration-200 mb-3 md:mb-4`;
 
       // Item header with name and price (price in top-right)
       const itemHeader = document.createElement('div');
@@ -103,7 +103,7 @@ function renderMenu(menuData, isSearchMode = false) {
 
       // Item name
       const itemName = document.createElement('h3');
-      itemName.className = 'text-base md:text-lg font-medium text-text-ink dark:text-text-main flex-1 pr-4';
+      itemName.className = 'text-base md:text-lg font-medium text-text-ink dark:text-text-light flex-1 pr-4';
       itemName.textContent = item.name;
 
       // Item price (top-right, ember-accent, medium weight)
@@ -116,7 +116,7 @@ function renderMenu(menuData, isSearchMode = false) {
 
       // Item description
       const itemDesc = document.createElement('p');
-      itemDesc.className = 'text-sm text-slate-500 dark:text-slate-400 leading-relaxed mt-1';
+      itemDesc.className = 'text-sm text-slate-500 dark:text-text-muted-dark leading-relaxed mt-1';
       itemDesc.textContent = item.description;
 
       itemDiv.appendChild(itemHeader);
@@ -159,18 +159,18 @@ function renderMenu(menuData, isSearchMode = false) {
 
     // Create category container
     const categoryDiv = document.createElement('div');
-    categoryDiv.className = 'bg-parchment-card dark:bg-charcoal-card border border-stone-300 dark:border-gray-700 rounded-lg overflow-hidden mb-4';
+    categoryDiv.className = 'bg-parchment-card dark:bg-dark-card border border-stone-300 dark:border-dark-border rounded-lg overflow-hidden mb-4';
 
     // Create category header (clickable) - styled like a physical menu folder
     const categoryHeader = document.createElement('div');
-    categoryHeader.className = 'bg-parchment-card dark:bg-charcoal-card border-b border-stone-200 dark:border-gray-700 hover:bg-stone-50 dark:hover:bg-gray-800/50 cursor-pointer transition-all duration-200 p-4 md:p-5 flex justify-between items-center';
+    categoryHeader.className = 'bg-parchment-card dark:bg-dark-card border-b border-stone-200 dark:border-dark-border hover:bg-stone-50 dark:hover:bg-gray-800/50 cursor-pointer transition-all duration-200 p-4 md:p-5 flex justify-between items-center';
     categoryHeader.setAttribute('data-category-id', category.id);
     
     const headerContent = document.createElement('div');
     headerContent.className = 'flex-1';
     
     const categoryName = document.createElement('h2');
-    categoryName.className = 'text-2xl md:text-3xl font-normal text-text-ink dark:text-text-main tracking-widest font-clarendon';
+    categoryName.className = 'text-2xl md:text-3xl font-normal text-text-ink dark:text-text-light tracking-widest font-clarendon';
     categoryName.textContent = category.name;
     categoryName.style.letterSpacing = "0.05em";
     
@@ -179,7 +179,7 @@ function renderMenu(menuData, isSearchMode = false) {
     
     if (category.description) {
       const categoryDesc = document.createElement('p');
-      categoryDesc.className = 'text-sm md:text-base text-slate-500 dark:text-slate-400 mt-1';
+      categoryDesc.className = 'text-sm md:text-base text-slate-500 dark:text-text-muted-dark mt-1';
       categoryDesc.textContent = category.description;
       headerContent.appendChild(categoryDesc);
     }
@@ -215,8 +215,8 @@ function renderMenu(menuData, isSearchMode = false) {
       const itemDiv = document.createElement('div');
       // Add border-t for all items except the first one (creates dividers between items)
       const isFirstItem = index === 0;
-      const borderClass = isFirstItem ? '' : 'border-t border-stone-200 dark:border-gray-700';
-      itemDiv.className = `p-4 md:p-5 bg-parchment-card dark:bg-charcoal-card ${borderClass} hover:scale-[1.01] transition-all duration-200`;
+      const borderClass = isFirstItem ? '' : 'border-t border-stone-200 dark:border-dark-border';
+      itemDiv.className = `p-4 md:p-5 bg-parchment-card dark:bg-dark-card ${borderClass} hover:scale-[1.01] transition-all duration-200`;
 
       // Item header with name and price (price in top-right)
       const itemHeader = document.createElement('div');
@@ -224,7 +224,7 @@ function renderMenu(menuData, isSearchMode = false) {
 
       // Item name (modern sans-serif, medium weight, normal casing)
       const itemName = document.createElement('h3');
-      itemName.className = 'text-base md:text-lg font-medium text-text-ink dark:text-text-main flex-1 pr-4';
+      itemName.className = 'text-base md:text-lg font-medium text-text-ink dark:text-text-light flex-1 pr-4';
       itemName.textContent = item.name;
 
       // Item price (modern sans-serif, medium weight, accent color)
@@ -237,7 +237,7 @@ function renderMenu(menuData, isSearchMode = false) {
 
       // Item description (modern sans-serif, smaller, softer color)
       const itemDesc = document.createElement('p');
-      itemDesc.className = 'text-sm text-slate-500 dark:text-slate-400 leading-relaxed mt-1';
+      itemDesc.className = 'text-sm text-slate-500 dark:text-text-muted-dark leading-relaxed mt-1';
       itemDesc.textContent = item.description;
 
       itemDiv.appendChild(itemHeader);
