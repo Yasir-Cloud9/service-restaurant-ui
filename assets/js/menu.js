@@ -308,14 +308,14 @@ function renderMenu(menuData, isSearchMode = false) {
     itemsContainer.style.opacity = "0";
 
     const itemsGrid = document.createElement("div");
-    itemsGrid.className = 'p-2.5 sm:p-3 md:px-5 md:py-4';
+    itemsGrid.className = "p-2.5 sm:p-3 md:px-5 md:py-4";
 
     categoryItems.forEach((item, index) => {
       const itemDiv = document.createElement("div");
       const isFirstItem = index === 0;
       const borderClass = isFirstItem ? "" : "border-t border-stone-200 dark:border-dark-border";
 
-      itemDiv.className =`p-2.5 sm:p-3 md:px-5 md:py-3 bg-parchment-card dark:bg-dark-card ${borderClass} hover:scale-[1.01] transition-all duration-200`;
+      itemDiv.className = `p-2.5 sm:p-3 md:px-5 md:py-3 bg-parchment-card dark:bg-dark-card ${borderClass} hover:scale-[1.01] transition-all duration-200`;
 
       const itemHeader = document.createElement("div");
       itemHeader.className = "flex justify-between items-start mb-1 md:mb-2";
@@ -432,26 +432,49 @@ function setupVegetarianFilter() {
   const searchInput = document.getElementById("search-input");
   if (!filterAll || !filterVeg) return;
 
+  // --- NEW: Leaf SVG (subtle) ---
+  const LEAF_SVG = `
+    <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M5 21c7-7 10-10 14-16-6 1-9 4-14 10v6z" />
+    </svg>
+  `;
+
+  // Ensure Veg button uses flex layout so icon aligns properly (works for both active/inactive)
+  // (No functional change; just layout)
+  filterVeg.classList.add("flex", "items-center", "gap-1");
+
   function updateFilterButtons() {
-    const active =
-      "px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 " +
-      "bg-white dark:bg-neutral-900 text-stone-900 dark:text-white " +
-      "shadow-sm dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]";
-
+    const base =
+      "px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap";
+  
+    const activeVeg =
+      base +
+      " bg-emerald-600 text-white " +
+      " shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_12px_-6px_rgba(16,185,129,0.9)]";
+  
+    const activeAll =
+      base +
+      " bg-white dark:bg-neutral-900 text-stone-900 dark:text-white " +
+      " shadow-sm dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]";
+  
     const inactive =
-      "px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 " +
-      "text-stone-600 dark:text-neutral-300 " +
-      "hover:text-stone-900 dark:hover:text-white " +
-      "hover:bg-stone-50 dark:hover:bg-neutral-900/60";
-
+      base +
+      " text-stone-600 dark:text-neutral-300 " +
+      " hover:text-stone-900 dark:hover:text-white " +
+      " hover:bg-stone-50 dark:hover:bg-neutral-900/60";
+  
     if (currentFilter === "all") {
-      filterAll.className = active;
+      filterAll.className = activeAll;
       filterVeg.className = inactive;
+      filterVeg.textContent = "Veg";
     } else {
       filterAll.className = inactive;
-      filterVeg.className = active;
+      filterVeg.className = activeVeg;
+      filterVeg.textContent = "Veg";
     }
   }
+  
 
   filterAll.addEventListener("click", () => {
     currentFilter = "all";
