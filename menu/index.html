@@ -9,35 +9,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Arvo:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CDN (must load BEFORE tailwind.config) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tailwind config -->
   <script>
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           colors: {
-            /* DARK MODE — TRUE BLACK SYSTEM */
             "dark-bg": "#000000",
             "dark-card": "#0A0A0A",
             "dark-border": "#1A1A1A",
-
-            /* LIGHT MODE */
             "parchment-bg": "#F9F7F2",
             "parchment-card": "#FFFFFF",
-
-            /* ACCENTS */
             "ember-accent": "#F05D23",
             "ember-dark": "#D3410B",
-
-            /* TEXT */
             "text-light": "#EDEDED",
             "text-muted-dark": "#9CA3AF",
             "text-ink": "#1A1A1B",
-
-            /* BRAND */
             "grill-gold": "#E6C36A",
           },
           fontFamily: {
@@ -49,59 +38,72 @@
     };
   </script>
 
-  <!-- IMPORTANT: this file is now /menu/index.html, so paths must go up one level -->
   <link rel="stylesheet" href="../assets/css/custom.css" />
 </head>
 
 <body class="bg-parchment-bg dark:bg-dark-bg text-text-ink dark:text-text-light transition-colors duration-200">
+
   <!-- Hero Section -->
-  <section class="relative h-[40vh] md:h-[50vh] lg:h-[30vh] overflow-hidden">
-    <!-- Background Image with Dark Overlay -->
-    <div class="absolute inset-0">
+  <section
+    id="hero"
+    class="relative
+           h-[32vh] sm:h-[36vh] md:h-[40vh] lg:h-[24vh]
+           overflow-hidden
+           transition-[height] duration-300 ease-out"
+  >
+
+    <!-- Hero Top-Right Nav -->
+    <div class="absolute top-3 right-3 z-20 flex items-center gap-2">
+      <a
+        href="/"
+        class="px-3 py-2 text-sm font-medium rounded-lg
+               bg-black/35 text-white
+               backdrop-blur-md border border-white/10
+               hover:bg-black/45 transition"
+      >
+        Home
+      </a>
+
+      <a
+        href="/contact/"
+        class="px-3 py-2 text-sm font-medium rounded-lg
+               bg-black/35 text-white
+               backdrop-blur-md border border-white/10
+               hover:bg-black/45 transition"
+      >
+        Contact
+      </a>
+    </div>
+
+    <!-- Background -->
+    <div class="absolute inset-0 pointer-events-none">
       <img
         src="../assets/images/flame.jpg"
         alt="Charcoal grill flames"
         class="w-full h-full object-cover"
       />
-
       <div class="absolute inset-0 bg-black/35 dark:bg-black/55"></div>
-
-      <!-- Bottom fade: to parchment in light, to black in dark -->
       <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-parchment-bg dark:to-black"></div>
     </div>
 
     <!-- Hero Content -->
     <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center">
-      <!-- Logo (Grill + Flame Icon) -->
-      <div class="mb-4">
-        <svg
-          class="w-16 h-16 md:w-20 md:h-20 text-ember-accent"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <!-- Flame -->
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.6"
-            d="M12 3c2.5 3 4 5.2 4 8a4 4 0 11-8 0c0-2.8 1.5-5 4-8z"
-          />
-          <!-- Grill bars -->
+      <div class="mb-3">
+        <svg class="w-16 h-16 md:w-18 md:h-18 text-ember-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+            d="M12 3c2.5 3 4 5.2 4 8a4 4 0 11-8 0c0-2.8 1.5-5 4-8z" />
           <path stroke-linecap="round" stroke-width="1.6" d="M5 16h14" />
           <path stroke-linecap="round" stroke-width="1.6" d="M6 19h12" />
         </svg>
       </div>
 
-      <!-- Restaurant Name -->
       <h1
-        class="text-4xl md:text-5xl lg:text-6xl font-bold text-grill-gold mb-3 tracking-tight font-graduate"
+        class="text-3xl sm:text-4xl md:text-5xl font-bold text-grill-gold mb-2 font-graduate"
         style="text-shadow: 0 2px 8px rgba(0,0,0,0.6);"
       >
         The Charcoal Grill
       </h1>
 
-      <!-- Badge -->
       <div class="inline-flex items-center px-4 py-2 bg-ember-accent/90 backdrop-blur-sm rounded-full">
         <span class="text-sm md:text-base font-medium text-white font-graduate">Cafe &amp; Bistro</span>
       </div>
@@ -109,7 +111,7 @@
   </section>
 
   <!-- Sticky Header -->
-  <header class="relative sticky top-0 z-50 bg-white/95 dark:bg-black backdrop-blur-sm shadow-[0_10px_30px_-25px_rgba(0,0,0,0.35)] dark:shadow-[0_18px_45px_-35px_rgba(0,0,0,0.95)]">
+  <header class="relative sticky top-0 z-[60] bg-white/95 dark:bg-black backdrop-blur-sm shadow-[0_10px_30px_-25px_rgba(0,0,0,0.35)] dark:shadow-[0_18px_45px_-35px_rgba(0,0,0,0.95)]">
     <!-- Downward depth (no upward line look) -->
     <div class="absolute inset-x-0 bottom-0 h-px bg-stone-200/80 dark:bg-white/10"></div>
     <div class="absolute inset-x-0 bottom-0 h-8 pointer-events-none bg-gradient-to-b from-black/0 to-black/10 dark:from-black/0 dark:to-black/60"></div>
@@ -117,9 +119,9 @@
     <div class="max-w-4xl mx-auto px-4 py-3 md:py-4">
       <div class="w-full flex items-center justify-between gap-3">
         <!-- Search + Filters (left group) -->
-        <div class="flex items-center gap-2 min-w-0">
-          <!-- Search Input -->
-          <div class="w-[320px] sm:w-[360px] md:w-[420px] lg:w-[520px] max-w-full">
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+          <!-- Search Input (fluid on mobile so theme toggle doesn't jump) -->
+          <div class="flex-1 min-w-0 w-auto sm:w-[360px] md:w-[420px] lg:w-[520px] max-w-full">
             <input
               type="text"
               id="search-input"
@@ -129,7 +131,7 @@
           </div>
 
           <!-- Vegetarian Filter Toggle -->
-          <div class="flex items-center gap-1 rounded-lg p-1 bg-stone-100 dark:bg-neutral-950 border border-stone-200 dark:border-neutral-800">
+          <div class="flex items-center gap-1 rounded-lg p-1 bg-stone-100 dark:bg-neutral-950 border border-stone-200 dark:border-neutral-800 flex-shrink-0">
             <button
               id="filter-all"
               class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 bg-white dark:bg-neutral-900 text-stone-900 dark:text-white shadow-sm dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
@@ -164,21 +166,37 @@
     </div>
   </header>
 
+
   <main class="max-w-4xl mx-auto px-4 py-6 md:py-8">
-    <!-- Customer Menu View -->
     <section id="customer-view" class="w-full">
       <div id="menu-container" class="space-y-1.5 sm:space-y-2 md:space-y-4"></div>
     </section>
-
-    <!-- Admin View -->
-    <section id="admin-view" class="w-full hidden">
-      <!-- Admin table will be rendered here -->
-    </section>
   </main>
 
-  <!-- IMPORTANT: this file is now /menu/index.html, so JS paths must go up one level -->
   <script src="../assets/js/config.js"></script>
   <script src="../assets/js/site.js"></script>
   <script src="../assets/js/menu.js"></script>
+
+  <!-- Hero shrink on scroll (mobile only) -->
+  <script>
+    (function () {
+      const hero = document.getElementById("hero");
+      if (!hero) return;
+
+      const mobile = window.matchMedia("(max-width: 640px)");
+
+      function onScroll() {
+        if (!mobile.matches) {
+          hero.classList.remove("h-[20vh]");
+          return;
+        }
+        hero.classList.toggle("h-[20vh]", window.scrollY > 40);
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+
 </body>
 </html>

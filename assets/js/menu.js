@@ -269,7 +269,7 @@ function renderMenu(menuData, isSearchMode = false) {
 
     const categoryHeader = document.createElement("div");
     categoryHeader.className =
-      "bg-parchment-card dark:bg-dark-card border-b border-stone-200 dark:border-dark-border hover:bg-stone-50 dark:hover:bg-gray-800/50 cursor-pointer transition-all duration-200 p-2.5 sm:p-3 md:p-5 flex justify-between items-center";
+      "bg-parchment-card dark:bg-dark-card border-b border-stone-200 dark:border-dark-border hover:bg-stone-50 dark:hover:bg-gray-800/50 cursor-pointer transition-all duration-200 p-2.5 sm:p-3 md:px-5 md:py-3.5 flex justify-between items-center";
     categoryHeader.setAttribute("data-category-id", category.id);
 
     const headerContent = document.createElement("div");
@@ -308,14 +308,14 @@ function renderMenu(menuData, isSearchMode = false) {
     itemsContainer.style.opacity = "0";
 
     const itemsGrid = document.createElement("div");
-    itemsGrid.className = "p-2.5 sm:p-3 md:p-5";
+    itemsGrid.className = 'p-2.5 sm:p-3 md:px-5 md:py-4';
 
     categoryItems.forEach((item, index) => {
       const itemDiv = document.createElement("div");
       const isFirstItem = index === 0;
       const borderClass = isFirstItem ? "" : "border-t border-stone-200 dark:border-dark-border";
 
-      itemDiv.className = `p-2.5 sm:p-3 md:p-5 bg-parchment-card dark:bg-dark-card ${borderClass} hover:scale-[1.01] transition-all duration-200`;
+      itemDiv.className =`p-2.5 sm:p-3 md:px-5 md:py-3 bg-parchment-card dark:bg-dark-card ${borderClass} hover:scale-[1.01] transition-all duration-200`;
 
       const itemHeader = document.createElement("div");
       itemHeader.className = "flex justify-between items-start mb-1 md:mb-2";
