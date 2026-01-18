@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurant Menu</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Arvo:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "dark-bg": "#000000",
+            "dark-card": "#0A0A0A",
+            "dark-border": "#1A1A1A",
+            "parchment-bg": "#F9F7F2",
+            "parchment-card": "#FFFFFF",
+            "ember-accent": "#F05D23",
+            "ember-dark": "#D3410B",
+            "text-light": "#EDEDED",
+            "text-muted-dark": "#9CA3AF",
+            "text-ink": "#1A1A1B",
+            "grill-gold": "#E6C36A",
+          },
+          fontFamily: {
+            clarendon: ["Arvo", "serif"],
+            graduate: ["Graduate", "serif"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="../assets/css/custom.css" />
+</head>
+
+<body class="bg-parchment-bg dark:bg-dark-bg text-text-ink dark:text-text-light transition-colors duration-200">
+
+  <!-- Hero Section -->
+  <section
+    id="hero"
+    class="relative
+           h-[32vh] sm:h-[36vh] md:h-[40vh] lg:h-[24vh]
+           overflow-hidden
+           transition-[height] duration-300 ease-out"
+  >
+
+    <!-- Hero Top-Right Nav (aligned to content column) -->
+    <div class="absolute top-3 inset-x-0 z-20">
+      <div class="max-w-4xl mx-auto px-4">
+        <div class="flex justify-end">
+          <!-- Blurred container -->
+          <nav
+            class="inline-flex items-center gap-1 p-1 rounded-xl
+                  bg-black/20 backdrop-blur-md border border-white/10
+                  opacity-80 hover:opacity-100 transition"
+            aria-label="Primary"
+          >
+            <!-- Home -->
+            <a
+            href="/"
+            class="group inline-flex items-center justify-center gap-2
+                   w-20 sm:w-28
+                   px-3 py-2 rounded-lg
+                   text-white/90 hover:text-white
+                   hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30
+                   transition"
+          >          
+              <!-- icon (mobile) -->
+              <svg class="w-4 h-4 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1v-9.5z"/>
+              </svg>
+              <!-- text (sm+) -->
+              <span class="hidden sm:inline text-sm font-medium">Home</span>
+            </a>
+
+            <div class="mx-1 h-5 w-px bg-white/15"></div>
+
+            <!-- Contact -->
+            <a
+            href="/contact/"
+            class="group inline-flex items-center justify-center gap-2
+                   w-20 sm:w-28
+                   px-3 py-2 rounded-lg
+                   text-white/90 hover:text-white
+                   hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30
+                   transition"
+          >
+          
+              <!-- icon (mobile) -->
+              <svg
+              class="w-4 h-4 sm:hidden"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H7c.5 1.5 1.5 3 3 4.5s3 2.5 4.5 3v-1a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2c-8.3 0-15-6.7-15-15z"
+              />
+            </svg>
+              <!-- text (sm+) -->
+              <span class="hidden sm:inline text-sm font-medium">Contact</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Background -->
+    <div class="absolute inset-0 pointer-events-none">
+      <img
+        src="../assets/images/flame.jpg"
+        alt="Charcoal grill flames"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-black/35 dark:bg-black/55"></div>
+      <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-parchment-bg dark:to-black"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center">
+      <div class="mb-3">
+        <svg class="w-16 h-16 md:w-18 md:h-18 text-ember-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+            d="M12 3c2.5 3 4 5.2 4 8a4 4 0 11-8 0c0-2.8 1.5-5 4-8z" />
+          <path stroke-linecap="round" stroke-width="1.6" d="M5 16h14" />
+          <path stroke-linecap="round" stroke-width="1.6" d="M6 19h12" />
+        </svg>
+      </div>
+
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl font-bold text-grill-gold mb-2 font-graduate"
+        style="text-shadow: 0 2px 8px rgba(0,0,0,0.6);"
+      >
+        The Charcoal Grill
+      </h1>
+
+      <div class="inline-flex items-center px-4 py-2 bg-ember-accent/90 backdrop-blur-sm rounded-full">
+        <span class="text-sm md:text-base font-medium text-white font-graduate">Cafe &amp; Bistro</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Header -->
+  <header class="relative sticky top-0 z-[60] bg-white/95 dark:bg-black backdrop-blur-sm shadow-[0_10px_30px_-25px_rgba(0,0,0,0.35)] dark:shadow-[0_18px_45px_-35px_rgba(0,0,0,0.95)]">
+    <!-- Downward depth (no upward line look) -->
+    <div class="absolute inset-x-0 bottom-0 h-px bg-stone-200/80 dark:bg-white/10"></div>
+    <div class="absolute inset-x-0 bottom-0 h-8 pointer-events-none bg-gradient-to-b from-black/0 to-black/10 dark:from-black/0 dark:to-black/60"></div>
+
+    <div class="max-w-4xl mx-auto px-4 py-3 md:py-4">
+      <div class="w-full flex items-center justify-between gap-3">
+        <!-- Search + Filters (left group) -->
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+          <!-- Search Input (fluid on mobile so theme toggle doesn't jump) -->
+          <div class="flex-1 min-w-0 w-auto sm:w-[360px] md:w-[420px] lg:w-[520px] max-w-full">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search menu..."
+              class="w-full px-4 py-2.5 md:py-2 border border-stone-300 dark:border-neutral-800 rounded-lg bg-white dark:bg-black text-stone-900 dark:text-white placeholder-stone-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-400 focus:border-transparent text-sm md:text-base transition-all duration-200"
+            />
+          </div>
+
+          <!-- Vegetarian Filter Toggle -->
+          <div class="flex items-center gap-1 rounded-lg p-1 bg-stone-100 dark:bg-neutral-950 border border-stone-200 dark:border-neutral-800 flex-shrink-0">
+            <button
+              id="filter-all"
+              class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 bg-white dark:bg-neutral-900 text-stone-900 dark:text-white shadow-sm dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+              data-filter="all"
+            >
+              All
+            </button>
+            <button
+              id="filter-veg"
+              class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 text-stone-600 dark:text-neutral-300 hover:text-stone-900 dark:hover:text-white hover:bg-stone-50 dark:hover:bg-neutral-900/60"
+              data-filter="veg"
+            >
+              Veg
+            </button>
+          </div>
+        </div>
+
+        <!-- Dark Mode Toggle (right) -->
+        <button
+          id="dark-mode-toggle"
+          class="p-2.5 rounded-lg flex-shrink-0 bg-white dark:bg-neutral-950 border border-stone-200 dark:border-neutral-800 shadow-sm dark:shadow-[0_10px_25px_-15px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-stone-50 dark:hover:bg-neutral-900 hover:-translate-y-[1px] active:translate-y-0 transition-all duration-200"
+          aria-label="Toggle dark mode"
+        >
+          <svg id="sun-icon" class="w-5 h-5 text-stone-700 dark:text-white hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          <svg id="moon-icon" class="w-5 h-5 text-stone-700 dark:text-white block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <main class="max-w-4xl mx-auto px-4 py-6 md:py-8">
+    <section id="customer-view" class="w-full">
+      <div id="menu-container" class="space-y-1.5 sm:space-y-2 md:space-y-4"></div>
+    </section>
+  </main>
+
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/site.js"></script>
+  <script src="../assets/js/menu.js"></script>
+
+  <!-- Hero shrink on scroll (mobile only) -->
+  <script>
+    (function () {
+      const hero = document.getElementById("hero");
+      if (!hero) return;
+
+      const mobile = window.matchMedia("(max-width: 640px)");
+
+      function onScroll() {
+        if (!mobile.matches) {
+          hero.classList.remove("h-[20vh]");
+          return;
+        }
+        hero.classList.toggle("h-[20vh]", window.scrollY > 40);
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+
+</body>
+</html>
