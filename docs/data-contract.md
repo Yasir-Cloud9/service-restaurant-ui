@@ -23,14 +23,6 @@ Examples:
 
 Each menu item belongs to exactly one category and has a name, description, and price in euros.
 
-### AdminUser
-Represents a user who can log into the admin panel to manage categories and items.  
-Examples:
-- The restaurant owner
-- A manager or staff member who edits the menu
-
-AdminUser is used only for authentication and admin actions; it is **not** shown in the public menu.
-
 ---
 
 ## 2. Fields per Entity
@@ -62,20 +54,6 @@ AdminUser is used only for authentication and admin actions; it is **not** shown
 | isSpicy      | boolean | no        | Optional flag indicating if the item is spicy.                             |
 | displayOrder | number  | yes       | Number used to sort items within a category (lower = shown earlier).       |
 
----
-
-### 2.3 AdminUser
-
-| Field name    | Type    | Required? | Description                                                              |
-|---------------|---------|-----------|--------------------------------------------------------------------------|
-| id            | number  | yes       | Unique identifier for the admin user.                                    |
-| email         | string  | yes       | Login email address (must be unique).                                    |
-| passwordHash  | string  | yes       | Hashed password (never plain text).                                      |
-| role          | string  | yes       | Role name (e.g. `"OWNER"`, `"ADMIN"`).                                   |
-| isActive      | boolean | yes       | If `false`, the user cannot log in.                                      |
-| createdAt     | string  | yes       | ISO timestamp when the user was created (e.g. `"2025-12-07T18:30:00Z"`). |
-| updatedAt     | string  | yes       | ISO timestamp when the user was last updated.                            |
-| lastLoginAt   | string  | no        | ISO timestamp of the last successful login (optional).                   |
 
 > Note: For timestamps, the shared contract uses **ISO 8601 strings**.  
 > SQLite can store them as `TEXT`, Java as `Instant`/`LocalDateTime`, JS as strings.
@@ -92,12 +70,6 @@ AdminUser is used only for authentication and admin actions; it is **not** shown
   - **One MenuItem belongs to exactly one Category.**
   - Every `MenuItem` must have a valid `categoryId`.
 
-- **AdminUser**
-  - **AdminUser is separate** from menu data.
-  - Used only for:
-    - Authentication (login/logout)
-    - Admin actions (create/edit/delete categories and menu items)
-  - There is **no direct foreign key** from `Category` or `MenuItem` to `AdminUser` in this basic contract.
 
 ---
 
@@ -196,18 +168,6 @@ Example data structure that follows the above fields.
       "isVegan": false,
       "isSpicy": true,
       "displayOrder": 3
-    }
-  ],
-  "adminUsers": [
-    {
-      "id": 1,
-      "email": "owner@example.com",
-      "passwordHash": "$2a$10$hashed-password-goes-here",
-      "role": "OWNER",
-      "isActive": true,
-      "createdAt": "2025-12-07T18:30:00Z",
-      "updatedAt": "2025-12-07T18:30:00Z",
-      "lastLoginAt": "2025-12-07T18:45:00Z"
     }
   ]
 }

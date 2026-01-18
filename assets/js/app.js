@@ -5,41 +5,212 @@
  * - Renders the menu from mock data
  * - Handles collapsible categories
  * - Handles live search
- * - Handles switching between customer and admin views
  */
 
 console.log('app.js is running');
+
+// ==============================
+// Menu Data Source (UPDATED)
+// ==============================
+const MENU_API_URL = "https://script.google.com/macros/s/AKfycbxXFTbTYtUE456YjdjCKnPeLD6AqMFiPaS62DOy5Vvx8oEY4PszEwg0AinXARvqWY8sTA/exec";
+
+// LocalStorage cache (keeps site working if API temporarily fails)
+const MENU_CACHE_KEY = "menuDataCache.v1";
+const MENU_CACHE_TS_KEY = "menuDataCacheTs.v1";
+// Cache TTL in ms (e.g., 10 minutes). Adjust as you like.
+const MENU_CACHE_TTL_MS = 10 * 60 * 1000;
 
 // Store original menu data for filtering
 let originalMenuData = null;
 // Current filter state: 'all' or 'veg'
 let currentFilter = 'all';
 
-// Read menu data on page load
-document.addEventListener('DOMContentLoaded', function() {
-  if (window.menuData) {
-    console.log('Menu data loaded:', window.menuData);
-    console.log('Categories:', window.menuData.categories);
-    console.log('Menu items:', window.menuData.menuItems);
-    
+// Read menu data on page load (UPDATED: fetch from Google Apps Script JSON endpoint)
+document.addEventListener('DOMContentLoaded', async function() {
+  const menuData = await loadMenuData();
+
+  if (menuData) {
+    console.log('Menu data loaded:', menuData);
+    console.log('Categories:', menuData.categories);
+    console.log('Menu items:', menuData.menuItems);
+
     // Store original data
-    originalMenuData = window.menuData;
-    
+    originalMenuData = menuData;
+
     // Render the menu with full data
     renderMenu(originalMenuData);
-    
+
     // Set up search functionality
     setupSearch();
-    
+
     // Set up vegetarian filter toggle
     setupVegetarianFilter();
-    
+
     // Set up dark mode toggle
     setupDarkMode();
   } else {
-    console.error('Menu data not found. Make sure menu-mock-data.js is loaded before app.js.');
+    console.error('Menu data not found from API, cache, or local fallback.');
+    const menuContainer = document.getElementById('menu-container');
+    if (menuContainer) {
+      menuContainer.innerHTML =
+        '<div class="p-4 text-sm text-slate-600 dark:text-text-muted-dark">Menu temporarily unavailable. Please try again later.</div>';
+    }
   }
 });
+
+// ==============================
+// Helpers (NEW)
+// ==============================
+
+async function loadMenuData() {
+  // 1) Try fresh API first
+  const apiData = await fetchMenuFromApiSafe();
+  if (apiData) {
+    writeMenuCache(apiData);
+    return apiData;
+  }
+
+  // 2) Try cache (even if stale, better than nothing)
+  const cached = readMenuCache(/* allowStale */ true);
+  if (cached) {
+    console.warn("Using cached menu data.");
+    return cached;
+  }
+
+  // 3) Optional fallback: local mock if still included
+  if (window.menuData && isValidMenuData(window.menuData)) {
+    console.warn("Using local mock menu data (window.menuData).");
+    // Ensure it won't crash rendering
+    return sanitizeMenuData(window.menuData);
+  }
+
+  return null;
+}
+
+async function fetchMenuFromApiSafe() {
+  try {
+    // If cache is still fresh, you can skip network entirely:
+    const cachedFresh = readMenuCache(/* allowStale */ false);
+    if (cachedFresh) {
+      return cachedFresh;
+    }
+
+    const res = await fetch(MENU_API_URL, {
+      cache: "no-store", // ensures updates are picked up; TTL caching handled by localStorage
+    });
+
+    if (!res.ok) {
+      console.warn("Menu API non-200 status:", res.status);
+      return null;
+    }
+
+    // Do not assume JSON; Apps Script may return HTML on quota/errors
+    const text = await res.text();
+
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      console.warn("Menu API returned non-JSON response.");
+      return null;
+    }
+
+    if (!isValidMenuData(data)) {
+      console.warn("Menu API payload is malformed (missing categories/menuItems arrays).");
+      return null;
+    }
+
+    // Sanitize to prevent runtime crashes (e.g., priceEuro.toFixed)
+    return sanitizeMenuData(data);
+
+  } catch (err) {
+    console.warn("Menu API fetch failed:", err);
+    return null;
+  }
+}
+
+function isValidMenuData(data) {
+  return (
+    data &&
+    Array.isArray(data.categories) &&
+    Array.isArray(data.menuItems)
+  );
+}
+
+function sanitizeMenuData(data) {
+  // Goal: preserve existing functionality; only ensure types won't crash rendering.
+  // - Ensure numeric fields are numbers
+  // - Ensure booleans are booleans (or sensible defaults)
+  // - Drop rows that would crash UI (e.g., missing name, invalid price)
+
+  const categories = (data.categories || [])
+    .filter(c => c && typeof c.name === "string" && c.name.trim() !== "")
+    .map(c => ({
+      id: Number(c.id),
+      name: c.name,
+      description: (c.description ?? "").toString(),
+      displayOrder: Number.isFinite(Number(c.displayOrder)) ? Number(c.displayOrder) : 999,
+      isActive: c.isActive !== false, // default true if missing
+    }))
+    .filter(c => Number.isFinite(c.id));
+
+  const menuItems = (data.menuItems || [])
+    .filter(i => i && typeof i.name === "string" && i.name.trim() !== "")
+    .map(i => {
+      const price = Number(i.priceEuro);
+      return {
+        id: Number(i.id),
+        categoryId: Number(i.categoryId),
+        name: i.name,
+        description: (i.description ?? "").toString(),
+        priceEuro: price,
+        isAvailable: i.isAvailable !== false, // treat missing as true (matches your existing logic)
+        displayOrder: Number.isFinite(Number(i.displayOrder)) ? Number(i.displayOrder) : 999,
+        isVegetarian: i.isVegetarian === true, // default false if missing
+      };
+    })
+    // Drop items that would break rendering/sorting
+    .filter(i =>
+      Number.isFinite(i.id) &&
+      Number.isFinite(i.categoryId) &&
+      Number.isFinite(i.priceEuro) &&
+      i.name
+    );
+
+  return { categories, menuItems };
+}
+
+function readMenuCache(allowStale) {
+  try {
+    const ts = Number(localStorage.getItem(MENU_CACHE_TS_KEY));
+    const raw = localStorage.getItem(MENU_CACHE_KEY);
+    if (!raw) return null;
+
+    const parsed = JSON.parse(raw);
+    if (!isValidMenuData(parsed)) return null;
+
+    if (!allowStale) {
+      const age = Date.now() - ts;
+      if (!Number.isFinite(ts) || age > MENU_CACHE_TTL_MS) {
+        return null; // not fresh enough
+      }
+    }
+
+    return sanitizeMenuData(parsed);
+  } catch {
+    return null;
+  }
+}
+
+function writeMenuCache(menuData) {
+  try {
+    localStorage.setItem(MENU_CACHE_KEY, JSON.stringify(menuData));
+    localStorage.setItem(MENU_CACHE_TS_KEY, String(Date.now()));
+  } catch (e) {
+    // localStorage may fail in private mode; ignore
+    console.warn("Failed to write menu cache:", e);
+  }
+}
 
 /**
  * Renders the menu based on provided menu data
@@ -177,8 +348,6 @@ function renderMenu(menuData, isSearchMode = false) {
     // Mobile typography tweak: smaller on mobile + less tracking on mobile
     categoryName.className = 'text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal text-text-ink dark:text-text-light tracking-normal sm:tracking-wide md:tracking-widest font-clarendon';
     categoryName.textContent = category.name;
-    // Remove forced letter spacing (it makes mobile headings feel huge); tracking classes handle it responsively now.
-    // categoryName.style.letterSpacing = "0.05em";
     
     headerContent.appendChild(categoryName);
     
