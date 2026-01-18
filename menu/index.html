@@ -52,28 +52,71 @@
            transition-[height] duration-300 ease-out"
   >
 
-    <!-- Hero Top-Right Nav -->
-    <div class="absolute top-3 right-3 z-20 flex items-center gap-2">
-      <a
-        href="/"
-        class="px-3 py-2 text-sm font-medium rounded-lg
-               bg-black/35 text-white
-               backdrop-blur-md border border-white/10
-               hover:bg-black/45 transition"
-      >
-        Home
-      </a>
+    <!-- Hero Top-Right Nav (aligned to content column) -->
+    <div class="absolute top-3 inset-x-0 z-20">
+      <div class="max-w-4xl mx-auto px-4">
+        <div class="flex justify-end">
+          <!-- Blurred container -->
+          <nav
+            class="inline-flex items-center gap-1 p-1 rounded-xl
+                  bg-black/20 backdrop-blur-md border border-white/10
+                  opacity-80 hover:opacity-100 transition"
+            aria-label="Primary"
+          >
+            <!-- Home -->
+            <a
+            href="/"
+            class="group inline-flex items-center justify-center gap-2
+                   w-20 sm:w-28
+                   px-3 py-2 rounded-lg
+                   text-white/90 hover:text-white
+                   hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30
+                   transition"
+          >          
+              <!-- icon (mobile) -->
+              <svg class="w-4 h-4 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1v-9.5z"/>
+              </svg>
+              <!-- text (sm+) -->
+              <span class="hidden sm:inline text-sm font-medium">Home</span>
+            </a>
 
-      <a
-        href="/contact/"
-        class="px-3 py-2 text-sm font-medium rounded-lg
-               bg-black/35 text-white
-               backdrop-blur-md border border-white/10
-               hover:bg-black/45 transition"
-      >
-        Contact
-      </a>
+            <div class="mx-1 h-5 w-px bg-white/15"></div>
+
+            <!-- Contact -->
+            <a
+            href="/contact/"
+            class="group inline-flex items-center justify-center gap-2
+                   w-20 sm:w-28
+                   px-3 py-2 rounded-lg
+                   text-white/90 hover:text-white
+                   hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30
+                   transition"
+          >
+          
+              <!-- icon (mobile) -->
+              <svg
+              class="w-4 h-4 sm:hidden"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H7c.5 1.5 1.5 3 3 4.5s3 2.5 4.5 3v-1a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2c-8.3 0-15-6.7-15-15z"
+              />
+            </svg>
+              <!-- text (sm+) -->
+              <span class="hidden sm:inline text-sm font-medium">Contact Us</span>
+            </a>
+          </nav>
+        </div>
+      </div>
     </div>
+
 
     <!-- Background -->
     <div class="absolute inset-0 pointer-events-none">
