@@ -44,6 +44,23 @@
   </script>
 
   <link rel="stylesheet" href="../assets/css/custom.css" />
+
+  <style>
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      20% { opacity: 0.8; }
+      100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+    }
+    .ember {
+      position: absolute;
+      bottom: 0;
+      background: #F05D23;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: rise var(--duration) ease-in infinite;
+      opacity: 0;
+    }
+  </style>
 </head>
 
 <body class="min-h-screen font-inter bg-parchment-bg text-text-ink dark:bg-dark-bg dark:text-text-light transition-colors duration-200">
@@ -135,7 +152,7 @@
           <a class="text-sm font-medium underline decoration-stone-300 dark:decoration-white/20 hover:text-ember-accent text-stone-700 dark:text-white/80" href="https://www.google.com/maps/dir//The+Charcoal+Grill,+Payne's+Ln,+Athlone,+Co.+Westmeath" target="_blank">Open in Google Maps</a>
         </div>
         <div class="mt-5 overflow-hidden rounded-2xl border border-stone-200/70 dark:border-white/10 bg-white">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2386.536413224716!2d-7.939527723439063!3d53.4217316701833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485c4904fc72ac41%3A0x235bfd92363b38eb!2sThe%20Charcoal%20Grill!5e0!3m2!1sen!2sie!4v1700000000000!5m2!1sen!2sie" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2377.6285767105337!2d-7.9367805867748356!3d53.421468468983434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485c4904fce3acc1%3A0x25bfd92363b38eb!2sCHARCOAL%20GRILL!5e0!3m2!1sen!2sie!4v1768779137763!5m2!1sen!2sie" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
       </div>
     </section>
@@ -175,10 +192,67 @@
       </div>
     </section>
 
-    <footer class="mt-10 text-center text-xs text-stone-500 dark:text-white/50">
-      <div>© 2026 The Charcoal Grill</div>
-      <div class="mt-1">Website by Yasir — Digital Menu Solutions</div>
+    <footer class="relative mt-20 pb-10 text-center overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none" id="ember-container">
+        </div>
+    
+      <div class="relative z-10">
+        <div class="flex items-center justify-center gap-2 text-xs text-stone-500 dark:text-white/40 mb-2">
+          <span class="w-8 h-px bg-stone-300 dark:bg-white/10"></span>
+          <span class="font-graduate tracking-widest uppercase text-[10px]">Premium Experience</span>
+          <span class="w-8 h-px bg-stone-300 dark:bg-white/10"></span>
+        </div>
+        
+        <div class="text-xs text-stone-500 dark:text-white/50">
+          © 2026 The Charcoal Grill
+        </div>
+    
+        <div class="mt-2 group">
+          <a href="your-portfolio-link.com" class="inline-flex items-center gap-1 text-sm font-medium transition-all duration-300 hover:text-ember-accent">
+            <span class="text-stone-500 dark:text-white/40">Website by</span>
+            <span class="relative">
+              Yasir
+              <span class="absolute -bottom-1 left-0 w-0 h-px bg-ember-accent transition-all duration-300 group-hover:w-full"></span>
+            </span>
+            <svg class="w-4 h-4 text-ember-accent animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3c2.5 3 4 5.2 4 8a4 4 0 11-8 0c0-2.8 1.5-5 4-8z" />
+            </svg>
+          </a>
+          <div class="text-[10px] text-stone-400 dark:text-white/20 mt-1 uppercase tracking-tighter italic">
+            Digital Menu Solutions
+          </div>
+        </div>
+      </div>
     </footer>
+    
+    <script>
+      function createEmber() {
+        const container = document.getElementById('ember-container');
+        const ember = document.createElement('div');
+        ember.className = 'ember';
+        
+        // Randomize ember properties
+        const size = Math.random() * 4 + 2;
+        const left = Math.random() * 100;
+        const duration = Math.random() * 3 + 2;
+        const delay = Math.random() * 5;
+        
+        ember.style.width = `${size}px`;
+        ember.style.height = `${size}px`;
+        ember.style.left = `${left}%`;
+        ember.style.setProperty('--duration', `${duration}s`);
+        ember.style.animationDelay = `${delay}s`;
+        ember.style.filter = `blur(${Math.random() * 2}px)`;
+        
+        container.appendChild(ember);
+        
+        // Clean up ember after animation
+        setTimeout(() => ember.remove(), (duration + delay) * 1000);
+      }
+    
+      // Create embers periodically
+      setInterval(createEmber, 300);
+    </script>
   </main>
 </body>
 </html>
