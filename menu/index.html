@@ -39,6 +39,24 @@
   </script>
 
   <link rel="stylesheet" href="../assets/css/custom.css" />
+
+  <style>
+    /* Premium Animations (embers) */
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      20% { opacity: 0.8; }
+      100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+    }
+    .ember {
+      position: absolute;
+      bottom: 0;
+      background: #F05D23;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: rise var(--duration) ease-in infinite;
+      opacity: 0;
+    }
+  </style>
 </head>
 
 <body class="bg-parchment-bg dark:bg-dark-bg text-text-ink dark:text-text-light transition-colors duration-200">
@@ -73,7 +91,6 @@
                     hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30
                     transition"
             >
-          
               <!-- icon (mobile) -->
               <svg class="w-4 h-4 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -95,22 +112,20 @@
                     hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30
                     transition"
             >
-
-          
               <!-- icon (mobile) -->
               <svg
-              class="w-4 h-4 sm:hidden"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H7c.5 1.5 1.5 3 3 4.5s3 2.5 4.5 3v-1a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2c-8.3 0-15-6.7-15-15z"
-              />
-            </svg>
+                class="w-4 h-4 sm:hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H7c.5 1.5 1.5 3 3 4.5s3 2.5 4.5 3v-1a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2c-8.3 0-15-6.7-15-15z"
+                />
+              </svg>
               <!-- text (sm+) -->
               <span class="hidden sm:inline text-sm font-medium">Contact</span>
             </a>
@@ -118,7 +133,6 @@
         </div>
       </div>
     </div>
-
 
     <!-- Background -->
     <div class="absolute inset-0 pointer-events-none">
@@ -129,6 +143,9 @@
       />
       <div class="absolute inset-0 bg-black/35 dark:bg-black/55"></div>
       <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-parchment-bg dark:to-black"></div>
+
+      <!-- Embers layer (added) -->
+      <div id="hero-embers" class="absolute inset-0"></div>
     </div>
 
     <!-- Hero Content -->
@@ -148,18 +165,19 @@
       >
         The Charcoal Grill
       </h1>
+
       <a
-      href="/"
-      aria-label="Go to home page"
-      class="inline-flex items-center px-4 py-2
-             bg-ember-accent/90 backdrop-blur-sm rounded-full
-             hover:bg-ember-accent
-             transition"
-    >
-      <span class="text-sm md:text-base font-medium text-white font-graduate">
-        Cafe &amp; Bistro
-      </span>
-    </a>
+        href="/"
+        aria-label="Go to home page"
+        class="inline-flex items-center px-4 py-2
+               bg-ember-accent/90 backdrop-blur-sm rounded-full
+               hover:bg-ember-accent
+               transition"
+      >
+        <span class="text-sm md:text-base font-medium text-white font-graduate">
+          Cafe &amp; Bistro
+        </span>
+      </a>
     </div>
   </section>
 
@@ -219,7 +237,6 @@
     </div>
   </header>
 
-
   <main class="max-w-4xl mx-auto px-4 py-6 md:py-8">
     <section id="customer-view" class="w-full">
       <div id="menu-container" class="space-y-1.5 sm:space-y-2 md:space-y-4"></div>
@@ -229,6 +246,30 @@
   <script src="../assets/js/config.js"></script>
   <script src="../assets/js/site.js"></script>
   <script src="../assets/js/menu.js"></script>
+
+  <script>
+    // Ember Animation Logic (added)
+    function createEmber() {
+      const container = document.getElementById('hero-embers');
+      if(!container) return;
+
+      const ember = document.createElement('div');
+      ember.className = 'ember';
+
+      const size = Math.random() * 3 + 2;
+      const left = Math.random() * 100;
+      const duration = Math.random() * 3 + 3;
+
+      ember.style.width = `${size}px`;
+      ember.style.height = `${size}px`;
+      ember.style.left = `${left}%`;
+      ember.style.setProperty('--duration', `${duration}s`);
+
+      container.appendChild(ember);
+      setTimeout(() => ember.remove(), duration * 1000);
+    }
+    setInterval(createEmber, 500);
+  </script>
 
   <!-- Hero shrink on scroll (mobile only) -->
   <script>
