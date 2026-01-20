@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Graduate&family=Arvo:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Graduate&family=Arvo:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap"
     rel="stylesheet"
   />
 
@@ -43,8 +43,6 @@
     };
   </script>
 
-  <link rel="stylesheet" href="../assets/css/custom.css" />
-
   <style>
     @keyframes rise {
       0% { transform: translateY(0) scale(1); opacity: 0; }
@@ -60,248 +58,238 @@
       animation: rise var(--duration) ease-in infinite;
       opacity: 0;
     }
+    /* Smooth glass effect for premium feel */
+    .premium-glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(230, 195, 106, 0.2);
+    }
+    .gold-gradient-text {
+        background: linear-gradient(to right, #E6C36A, #D3B05B, #F4D991);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
   </style>
 </head>
 
 <body class="min-h-screen font-inter bg-parchment-bg text-text-ink dark:bg-dark-bg dark:text-text-light transition-colors duration-200">
 
   <div class="fixed inset-0 -z-10 pointer-events-none">
-    <img src="../assets/images/flame.jpg" alt="" class="h-full w-full object-cover object-center" />
-    <div class="absolute inset-0 bg-black/45 dark:bg-black/60"></div>
-    <div class="absolute inset-x-0 top-0 h-[75vh] bg-gradient-to-b from-transparent via-black/10 dark:via-black/25 to-parchment-bg dark:to-black"></div>
-    <div class="absolute inset-x-0 top-[75vh] bottom-0 bg-parchment-bg dark:bg-black"></div>
+    <img src="../assets/images/flame.jpg" alt="" class="h-full w-full object-cover object-center opacity-40" />
+    <div class="absolute inset-0 bg-black/60 dark:bg-black/80"></div>
   </div>
 
   <header class="relative">
     <div class="max-w-6xl mx-auto px-4 py-4">
       <div class="flex items-center justify-between gap-3">
         <div class="flex items-center gap-3">
-          <a
-          href="/"
-          aria-label="Go to home page"
-          class="rounded-xl bg-white/70 dark:bg-white/5
-                 border border-stone-200/80 dark:border-white/10
-                 backdrop-blur-md p-2
-                 hover:bg-white/80 dark:hover:bg-white/10
-                 transition"
-        >
-          <svg class="w-6 h-6 text-ember-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
-              d="M12 3c2.5 3 4 5.2 4 8a4 4 0 11-8 0c0-2.8 1.5-5 4-8z" />
-            <path stroke-linecap="round" stroke-width="1.6" d="M5 16h14" />
-            <path stroke-linecap="round" stroke-width="1.6" d="M6 19h12" />
-          </svg>
-        </a>
-        
+          <a href="/" class="rounded-xl bg-white/5 border border-white/10 backdrop-blur-md p-2 hover:bg-white/10 transition">
+            <svg class="w-6 h-6 text-ember-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M12 3c2.5 3 4 5.2 4 8a4 4 0 11-8 0c0-2.8 1.5-5 4-8z" />
+              <path stroke-linecap="round" stroke-width="1.6" d="M5 16h14" />
+              <path stroke-linecap="round" stroke-width="1.6" d="M6 19h12" />
+            </svg>
+          </a>
           <div class="leading-tight">
             <div class="font-graduate tracking-wide text-grill-gold text-lg sm:text-xl">The Charcoal Grill</div>
-            <div class="text-xs sm:text-sm text-stone-600 dark:text-white/75">Cafe & Bistro</div>
+            <div class="text-xs sm:text-sm text-white/75">Cafe & Bistro</div>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <nav class="inline-flex items-center gap-1 p-1 rounded-xl bg-black/10 dark:bg-black/20 backdrop-blur-md border border-stone-200/70 dark:border-white/10 opacity-95 hover:opacity-100 transition" aria-label="Primary">
-            <a
-              href="/"
-              class="group inline-flex items-center justify-center gap-2
-                    w-10 h-10 sm:w-28 sm:h-auto
-                    px-0 sm:px-3 py-0 sm:py-2 rounded-lg
-                    text-stone-700 hover:text-stone-900
-                    dark:text-white/90 dark:hover:text-white
-                    hover:bg-black/5 dark:hover:bg-white/10
-                    transition text-sm font-medium"
-            >
+          <nav class="inline-flex items-center gap-1 p-1 rounded-xl bg-black/20 backdrop-blur-md border border-white/10 opacity-95 hover:opacity-100 transition">
+            <a href="/" class="group inline-flex items-center justify-center gap-2 w-10 h-10 sm:w-28 sm:h-auto px-0 sm:px-3 py-0 sm:py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition text-sm font-medium">
               <!-- icon (mobile) -->
               <svg class="w-4 h-4 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1v-9.5z"/>
+                  d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1v-9.5z"/>
               </svg>
-            
-              <!-- text (sm+) -->
-              <span class="hidden sm:inline text-sm font-medium">Home</span>
+              <span class="hidden sm:inline">Home</span>
             </a>
-          
-            <div class="mx-1 h-5 w-px bg-stone-300/70 dark:bg-white/15"></div>
-            <a
-              href="/menu/"
-              class="group inline-flex items-center justify-center gap-2
-                    w-10 h-10 sm:w-28 sm:h-auto
-                    px-0 sm:px-3 py-0 sm:py-2 rounded-lg
-                    text-stone-700 hover:text-stone-900
-                    dark:text-white/90 dark:hover:text-white
-                    hover:bg-black/5 dark:hover:bg-white/10
-                    transition text-sm font-medium"
-            >
+            <div class="mx-1 h-5 w-px bg-white/15"></div>
+            <a href="/menu/" class="group inline-flex items-center justify-center gap-2 w-10 h-10 sm:w-28 sm:h-auto px-0 sm:px-3 py-0 sm:py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition text-sm font-medium">
               <!-- icon (mobile) -->
               <svg class="w-4 h-4 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 6h16M4 12h16M4 18h16"/>
+                  d="M4 6h16M4 12h16M4 18h16" />
               </svg>
-            
-              <!-- text (sm+) -->
-              <span class="hidden sm:inline text-sm font-medium">Menu</span>
-            </a>          
+              <span class="hidden sm:inline">Menu</span>
+            </a>
           </nav>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto px-4 pb-16">
-    <section class="pt-10 sm:pt-12 text-center">
-      <h1 class="font-playfair text-5xl sm:text-6xl text-text-ink dark:text-white">Contact Us</h1>
-      <p class="mt-3 text-stone-600 dark:text-white/70 max-w-2xl mx-auto">We’re here to help — reach us for reservations, takeaway queries, or anything else.</p>
+  <main class="max-w-6xl mx-auto px-4 pb-16">
+    <section class="pt-16 pb-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-4">
+          <div class="h-px w-12 bg-grill-gold/30"></div>
+          <span class="font-graduate text-xs tracking-[0.3em] text-grill-gold uppercase">Get in touch</span>
+          <div class="h-px w-12 bg-grill-gold/30"></div>
+      </div>
+      <h1 class="font-playfair text-6xl sm:text-7xl lg:text-8xl text-white italic">Contact <span class="text-grill-gold not-italic">Us</span></h1>
+      <p class="mt-6 text-white/60 max-w-xl mx-auto font-inter text-lg leading-relaxed">
+        Whether it's a candlelit dinner or a weekend takeaway, we're here to make your experience perfect.
+      </p>
     </section>
 
-    <section class="mt-10">
-      <div class="rounded-3xl border border-stone-200/80 dark:border-white/10 bg-parchment-card/90 dark:bg-white/5 backdrop-blur-md shadow-[0_30px_70px_-55px_rgba(0,0,0,0.25)] dark:shadow-[0_30px_70px_-55px_rgba(0,0,0,0.95)] p-6 sm:p-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h2 class="font-playfair text-3xl text-text-ink dark:text-white">Restaurant details</h2>
-            <div class="mt-5 space-y-4 text-sm sm:text-base">
-              <div>
-                <div class="text-stone-500 dark:text-white/50 uppercase tracking-wider text-xs font-semibold">Address</div>
-                <a href="https://www.google.com/maps/dir//The+Charcoal+Grill,+Payne's+Ln,+Athlone,+Co.+Westmeath" target="_blank" class="mt-1 block text-text-ink dark:text-white/90 hover:text-ember-accent transition underline decoration-stone-300 dark:decoration-white/20">
-                  Payne's Ln, Athlone, Co. Westmeath, N37 A5R2
-                </a>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <div class="lg:col-span-5 space-y-8">
+        <div class="premium-glass rounded-3xl p-8 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
+             <svg class="w-24 h-24 text-grill-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+
+          <h2 class="font-playfair text-3xl text-white mb-8">Our Location</h2>
+          <div class="space-y-8 relative z-10">
+            <div class="flex gap-4">
+              <div class="w-10 h-10 rounded-full bg-grill-gold/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-grill-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
               </div>
               <div>
-                <div class="text-stone-500 dark:text-white/50 uppercase tracking-wider text-xs font-semibold">Phone</div>
-                <a class="mt-1 inline-block text-text-ink dark:text-white/90 underline decoration-stone-300 dark:decoration-white/20 hover:text-ember-accent transition" href="tel:+353906470777">(090) 647 0777</a>
+                <p class="text-xs uppercase tracking-widest text-grill-gold font-graduate mb-1">Address</p>
+                <a
+                  href="https://maps.app.goo.gl/fVW2aPEgsNHhHJjr6"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-white/90 hover:text-white transition-colors text-lg"
+                >Payne's Ln, Athlone, <br>Co. Westmeath, N37 A5R2</a>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-10 h-10 rounded-full bg-grill-gold/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-grill-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
               </div>
               <div>
-                <div class="text-stone-500 dark:text-white/50 uppercase tracking-wider text-xs font-semibold">Email</div>
-                <a class="mt-1 inline-block text-text-ink dark:text-white/90 underline decoration-stone-300 dark:decoration-white/20 hover:text-ember-accent transition" href="mailto:charcoal.grill.athlone@gmail.com">charcoal.grill.athlone@gmail.com</a>
+                <p class="text-xs uppercase tracking-widest text-grill-gold font-graduate mb-1">Book a Table</p>
+                <a href="tel:+353906470777" class="text-white/90 hover:text-white transition-colors text-lg font-semibold">(090) 647 0777</a>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-10 h-10 rounded-full bg-grill-gold/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-grill-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-widest text-grill-gold font-graduate mb-1">Email</p>
+                <a href="mailto:charcoal.grill.athlone@gmail.com" class="text-white/90 hover:text-white transition-colors break-all">charcoal.grill.athlone@gmail.com</a>
               </div>
             </div>
           </div>
-          <div>
-            <h2 class="font-playfair text-3xl text-text-ink dark:text-white">Opening hours</h2>
-            <div class="mt-5 rounded-2xl border border-stone-200/70 dark:border-white/10 overflow-hidden">
-              <div class="divide-y divide-stone-200/70 dark:divide-white/10">
-                <div class="flex items-center justify-between px-4 py-3 bg-white/50 dark:bg-black/10"><span class="text-stone-700 dark:text-white/80">Sunday</span><span class="text-stone-900 dark:text-white">12–10 pm</span></div>
-                <div class="flex items-center justify-between px-4 py-3 bg-white/40 dark:bg-black/5"><span class="text-stone-700 dark:text-white/80">Monday</span><span class="text-stone-900 dark:text-white">12–10 pm</span></div>
-                <div class="flex items-center justify-between px-4 py-3 bg-white/50 dark:bg-black/10"><span class="text-stone-700 dark:text-white/80">Tuesday</span><span class="text-stone-900 dark:text-white">12–10 pm</span></div>
-                <div class="flex items-center justify-between px-4 py-3 bg-white/40 dark:bg-black/5"><span class="text-stone-700 dark:text-white/80">Wednesday</span><span class="text-stone-900 dark:text-white">12–10 pm</span></div>
-                <div class="flex items-center justify-between px-4 py-3 bg-white/50 dark:bg-black/10"><span class="text-stone-700 dark:text-white/80">Thursday</span><span class="text-stone-900 dark:text-white">12–10 pm</span></div>
-                <div class="flex items-center justify-between px-4 py-3 bg-white/40 dark:bg-black/5"><span class="text-stone-700 dark:text-white/80">Friday</span><span class="text-stone-900 dark:text-white">12–11 pm</span></div>
-                <div class="flex items-center justify-between px-4 py-3 bg-white/50 dark:bg-black/10"><span class="text-stone-700 dark:text-white/80">Saturday</span><span class="text-stone-900 dark:text-white">12–11 pm</span></div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
 
-    <section class="mt-10">
-      <div class="rounded-3xl border border-stone-200/80 dark:border-white/10 bg-parchment-card/90 dark:bg-white/5 backdrop-blur-md shadow-[0_30px_70px_-55px_rgba(0,0,0,0.25)] dark:shadow-[0_30px_70px_-55px_rgba(0,0,0,0.95)] p-6 sm:p-8">
-        <div class="flex items-center justify-between gap-4">
-          <h2 class="font-playfair text-3xl text-text-ink dark:text-white">Map</h2>
-          <a class="text-sm font-medium underline decoration-stone-300 dark:decoration-white/20 hover:text-ember-accent text-stone-700 dark:text-white/80" href="https://www.google.com/maps/dir//The+Charcoal+Grill,+Payne's+Ln,+Athlone,+Co.+Westmeath" target="_blank">Open in Google Maps</a>
-        </div>
-        <div class="mt-5 overflow-hidden rounded-2xl border border-stone-200/70 dark:border-white/10 bg-white">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2377.6285767105337!2d-7.9367805867748356!3d53.421468468983434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485c4904fce3acc1%3A0x25bfd92363b38eb!2sCHARCOAL%20GRILL!5e0!3m2!1sen!2sie!4v1768779137763!5m2!1sen!2sie" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <section class="mt-10">
-      <div class="rounded-3xl border border-stone-200/80 dark:border-white/10 bg-parchment-card/90 dark:bg-white/5 backdrop-blur-md shadow-[0_30px_70px_-55px_rgba(0,0,0,0.25)] dark:shadow-[0_30px_70px_-55px_rgba(0,0,0,0.95)] p-6 sm:p-8">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div class="flex-1">
-            <h2 class="font-playfair text-3xl text-text-ink dark:text-white">Google reviews</h2>
-            <div class="mt-2 flex items-center gap-2">
-                <span class="text-xl font-bold text-grill-gold">4.2</span>
-                <div class="flex text-ember-accent">
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span class="text-stone-300">★</span>
+        <div class="premium-glass rounded-3xl p-8">
+            <h2 class="font-playfair text-3xl text-white mb-6">Service Hours</h2>
+            <div class="space-y-4">
+                <div class="flex justify-between items-baseline group">
+                    <span class="text-white/50 font-medium group-hover:text-grill-gold transition-colors">Mon — Thu</span>
+                    <div class="flex-grow mx-4 border-b border-white/10 border-dotted"></div>
+                    <span class="text-white font-semibold">12:00 – 22:00</span>
                 </div>
-                <span class="text-sm text-stone-500 dark:text-white/60">(978 Reviews)</span>
+                <div class="flex justify-between items-baseline group">
+                    <span class="text-white/50 font-medium group-hover:text-grill-gold transition-colors">Fri — Sat</span>
+                    <div class="flex-grow mx-4 border-b border-white/10 border-dotted"></div>
+                    <span class="text-white font-semibold text-ember-accent">12:00 – 23:00</span>
+                </div>
+                <div class="flex justify-between items-baseline group">
+                    <span class="text-white/50 font-medium group-hover:text-grill-gold transition-colors">Sunday</span>
+                    <div class="flex-grow mx-4 border-b border-white/10 border-dotted"></div>
+                    <span class="text-white font-semibold">12:00 – 22:00</span>
+                </div>
             </div>
-          </div>
-          <a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-ember-accent text-white hover:bg-ember-dark transition font-semibold text-sm shadow-lg shadow-ember-accent/20" href="https://search.google.com/local/reviews?placeid=ChIJwazj_ARJXEgR6zg7NpL9WwI" target="_blank">
-            Read All Reviews <span aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="p-5 rounded-2xl bg-black/5 dark:bg-white/5 border border-stone-200/50 dark:border-white/5">
-                <p class="text-sm italic text-stone-700 dark:text-white/80 leading-relaxed">
-                    "We went in as a family of 4. The service was great and the food was really good. Great value for money. The platter was very tasty... We will definitely be back."
-                </p>
-                <div class="mt-4 font-graduate text-xs tracking-wider text-grill-gold">— SIMON MCCANN</div>
-            </div>
-            <div class="p-5 rounded-2xl bg-black/5 dark:bg-white/5 border border-stone-200/50 dark:border-white/5">
-                <p class="text-sm italic text-stone-700 dark:text-white/80 leading-relaxed">
-                    "The food was excellent, the service was superb. The variety of food available and the quality of each is very impressive."
-                </p>
-                <div class="mt-4 font-graduate text-xs tracking-wider text-grill-gold">— BRIAN MALONE (LOCAL GUIDE)</div>
+            <div class="mt-8 pt-6 border-t border-white/10 text-center">
+                <p class="text-xs text-white/40 italic">Note: Kitchen closes 30 minutes before closing time.</p>
             </div>
         </div>
       </div>
-    </section>
 
-    <footer class="relative mt-20 pb-10 text-center overflow-hidden">
-      <div class="absolute inset-0 pointer-events-none" id="ember-container">
+      <div class="lg:col-span-7 space-y-8">
+        <div class="premium-glass rounded-3xl overflow-hidden p-2 group">
+          <div class="relative rounded-2xl overflow-hidden h-[450px]">
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2377.6285767105337!2d-7.9367805867748356!3d53.421468468983434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485c4904fce3acc1%3A0x25bfd92363b38eb!2sCHARCOAL%20GRILL!5e0!3m2!1sen!2sie!4v1768779137763!5m2!1sen!2sie" width="100%" height="100%" style="border:0; filter: grayscale(1) invert(0.92) contrast(1.2);" allowfullscreen="" loading="lazy"></iframe>
+             <div class="absolute bottom-6 left-6 right-6 flex justify-between items-center bg-black/80 backdrop-blur-md p-4 rounded-xl border border-white/10">
+                <div class="text-sm">
+                    <p class="text-white font-medium">Find us in the heart of Athlone</p>
+                    <p class="text-white/50 text-xs">Easy parking available nearby</p>
+                </div>
+                <a
+                  href="https://www.google.com/maps/dir//The+Charcoal+Grill,+Payne%27s+Ln,+Athlone,+Co.+Westmeath,+N37+A5R2"
+                  target="_blank"
+                  rel="noopener"
+                  class="bg-grill-gold text-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-white transition-colors"
+                >Directions</a>
+             </div>
+          </div>
         </div>
-    
+
+        <div class="premium-glass rounded-3xl p-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
+                <div>
+                    <h2 class="font-playfair text-3xl text-white mb-2">Guest Experiences</h2>
+                    <div class="flex items-center gap-3">
+                        <div class="flex text-grill-gold">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span class="text-white/20">★</span>
+                        </div>
+                        <span class="text-white/60 text-sm"><strong class="text-white">4.2/5</strong> based on 978 reviews</span>
+                    </div>
+                </div>
+                <a href="https://search.google.com/local/reviews?placeid=ChIJwazj_ARJXEgR6zg7NpL9WwI" class="px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white text-sm font-semibold hover:bg-grill-gold hover:text-black transition-all text-center">
+                    Read All Reviews
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/5 hover:border-grill-gold/30 transition-colors">
+                    <p class="text-white/70 italic text-sm leading-relaxed mb-4">"The platter was very tasty... We will definitely be back. Great value for money."</p>
+                    <p class="font-graduate text-[10px] tracking-widest text-grill-gold uppercase">— Simon McCann</p>
+                </div>
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/5 hover:border-grill-gold/30 transition-colors">
+                    <p class="text-white/70 italic text-sm leading-relaxed mb-4">"The variety of food available and the quality of each is very impressive."</p>
+                    <p class="font-graduate text-[10px] tracking-widest text-grill-gold uppercase">— Brian Malone</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="relative mt-24 pb-10 text-center overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none" id="ember-container"></div>
       <div class="relative z-10">
-        <div class="flex items-center justify-center gap-2 text-xs text-stone-500 dark:text-white/40 mb-2">
-          <span class="w-8 h-px bg-stone-300 dark:bg-white/10"></span>
-          <span class="font-graduate tracking-widest uppercase text-[10px]">Premium Experience</span>
-          <span class="w-8 h-px bg-stone-300 dark:bg-white/10"></span>
+        <div class="flex items-center justify-center gap-2 text-xs text-white/50 mb-4">
+          <span class="w-12 h-px bg-white/10"></span>
+          <span class="font-graduate tracking-[0.4em] uppercase text-[10px]">Authentic Fire & Flavor</span>
+          <span class="w-12 h-px bg-white/10"></span>
         </div>
-        
-        <div class="text-xs text-stone-500 dark:text-white/50">
-          © 2026 The Charcoal Grill
+        <div class="text-xs text-white/50">© 2026 The Charcoal Grill Athlone</div>
+        <div class="mt-4 flex items-center justify-center gap-2 text-xs text-white/50">
+            <span>Website by Yasir</span>
+            <span class="text-ember-accent">●</span>
+            <a href="mailto:drift.stack@gmail.com" class="hover:text-grill-gold transition">drift.stack@gmail.com</a>
         </div>
-    
-        <div class="mt-2">
-          <div class="inline-flex items-center gap-1 text-sm font-medium">
-            <span class="text-stone-500 dark:text-white/40">Website by</span>
-            <span class="text-stone-500 dark:text-white/40">Yasir</span>
-            <svg class="w-4 h-4 text-ember-accent animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 3c2.5 3 4 5.2 4 8a4 4 0 11-8 0c0-2.8 1.5-5 4-8z" />
-            </svg>
-          </div>
-          <div class="mt-1">
-            <a
-              href="mailto:abc@gmail.com"
-              class="text-sm font-medium text-stone-500 dark:text-white/40 hover:text-stone-500 dark:hover:text-white/40"
-            >
-              drift.stack@gmail.com
-            </a>
-          </div>
-        </div>
-        
       </div>
     </footer>
-    
+
     <script>
       function createEmber() {
         const container = document.getElementById('ember-container');
+        if(!container) return;
         const ember = document.createElement('div');
         ember.className = 'ember';
-        
-        // Randomize ember properties
         const size = Math.random() * 4 + 2;
         const left = Math.random() * 100;
         const duration = Math.random() * 3 + 2;
         const delay = Math.random() * 5;
-        
         ember.style.width = `${size}px`;
         ember.style.height = `${size}px`;
         ember.style.left = `${left}%`;
         ember.style.setProperty('--duration', `${duration}s`);
         ember.style.animationDelay = `${delay}s`;
         ember.style.filter = `blur(${Math.random() * 2}px)`;
-        
         container.appendChild(ember);
-        
-        // Clean up ember after animation
         setTimeout(() => ember.remove(), (duration + delay) * 1000);
       }
-    
-      // Create embers periodically
       setInterval(createEmber, 300);
     </script>
   </main>
